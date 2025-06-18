@@ -1,0 +1,231 @@
+/* WarCry Thema CSS - Rotes Eis Edition */
+
+/* --- Schriftarten Import --- */
+/* Stelle sicher, dass 'Oxanium' und 'IM Fell English SC' in deiner HTML importiert sind. */
+
+/* --- Allgemeine Einstellungen --- */
+body {
+    font-family: 'Times New Roman', serif; /* Robuste Serifenschrift als Fallback für Fließtext */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #0d0000; /* Sehr dunkles, fast schwarzes Rot als Fallback-Farbe */
+    
+    /* HIER DER PFAD ZU DEINEM HINTERGRUNDBILD MIT INTEGRIERTEM "HECKTHOR"-TITEL! */
+    /* Dieses Bild sollte im 'img'-Ordner liegen, z.B. img/warcry_new_bg.jpg */
+    background-image: url('img/warcry_new_bg.jpg'); 
+    
+    background-size: 100% auto; /* NEU: Bild 50% der Breite des Body, Höhe proportional. */
+                                /* Experimentiere hier auch mit 'cover' oder 'contain' oder '100% auto;' */
+    background-position: center top; /* Zentriert das Bild horizontal, aber oben ausgerichtet. */
+                                     /* Wenn der Titel in deinem Bild eher mittig ist, versuche 'center center;' */
+    background-repeat: no-repeat; /* Verhindert, dass sich das Bild wiederholt */
+    background-attachment: scroll; /* Hintergrundbild scrollt mit dem Inhalt (oder 'fixed' für statisch) */
+    
+    color: #e0d9c4; /* Leicht knochenfarbener Text für Kontrast */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Starker Schatten für bessere Lesbarkeit */
+}
+
+/* --- Container für den Inhalt --- */
+.container {
+    background-color: rgba(20, 5, 5, 0.85);
+    border: 3px solid #6b0000;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    padding: 40px 35px 35px 35px; /* Reduzierter Padding-Top Wert */
+    width: 90%;
+    max-width: 650px;
+    box-sizing: border-box;
+    position: relative; /* Wichtig für die absolute Positionierung der Buttons */
+    overflow: hidden;
+
+    min-height: 350px; /* Mindesthöhe für den Container selbst. Passe diesen Wert bei Bedarf an! */
+    display: flex; /* Container als Flexbox, um den Inhalt zu zentrieren */
+    flex-direction: column; /* Elemente innerhalb des Containers untereinander anordnen */
+    justify-content: space-between; /* Inhalt oben und unten ausrichten, Platz dazwischen */
+    align-items: center; /* Inhalt horizontal zentrieren */
+}
+
+
+/* Optional: Eine subtile Eis- oder Riss-Textur über den Container legen */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('img/ice_texture.jpg'); /* Beispiel: Eis-Textur, lokal hosten! */
+    background-size: cover;
+    opacity: 0.15; /* Erhöht die Deckkraft leicht */
+    border-radius: 6px;
+    pointer-events: none; /* Macht es klickbar durch */
+    z-index: 0; /* Stellt sicher, dass es hinter dem Inhalt liegt */
+}
+
+/* --- Fragen-Text --- */
+#question-text {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5;
+    color: #f0ead2;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    flex-grow: 1; /* Lässt den Textbereich den verfügbaren Platz einnehmen */
+}
+
+/* --- Button-Styling (Grundstile für alle Buttons) --- */
+#options-container button,
+#restart-button,
+#back-button {
+    background-color: transparent; /* Sollte transparent sein, um das Hintergrundbild zu zeigen */
+    background-image: url('img/button_1.jpg'); /* HIER DEN RELATIVEN PFAD EINFÜGEN! */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: #f0ead2;
+    border: 2px solid #8c0000;
+    border-bottom: 4px solid #2e0000;
+    padding: 15px 25px;
+    margin: 10px; 
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    min-width: 160px; 
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'IM Fell English SC', serif;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    position: relative; 
+    z-index: 1;
+}
+
+#options-container button:hover,
+#restart-button:hover,
+#back-button:hover {
+    background-color: rgba(77, 0, 0, 0.3);
+    border-color: #b30000;
+    transform: translateY(-3px);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+#options-container button:active,
+#restart-button:active,
+#back-button:active {
+    transform: translateY(1px);
+    border-bottom: 2px solid #2e0000;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+
+/* --- Spezifische Positionierung und Größen für "Zurück" und "Neustart" --- */
+/* Diese Regeln überschreiben nur die spezifischen Eigenschaften wie Größe und Position,
+   NICHT die Hintergrundbilder oder Farben, die von der globalen Regel geerbt werden. */
+#back-button {
+    min-width: 100px; /* Beispielwert: Reduziert die Mindestbreite */
+    padding: 10px 15px; /* Beispielwert: Etwas weniger Padding für einen kleineren Look */
+    font-size: 0.9em; /* Beispielwert: Etwas kleinere Schriftgröße */
+
+    position: absolute; /* Absolute Positionierung */
+    bottom: 20px;       /* Abstand zum unteren Rand des Containers */
+    left: 20px;         /* Abstand zum linken Rand des Containers */
+    margin: 0;          /* Margin entfernen, da absolut positioniert */
+    z-index: 2;         /* Stellt sicher, dass er über anderen Elementen liegt */
+    /* background-color: transparent; */ /* DIESE ZEILE ENTFERNT ODER AUSKOMMENTIERT */
+    /* background-image: url('img/button_1.jpg'); */ /* DIESE ZEILE ENTFERNT ODER AUSKOMMENTIERT */
+}
+
+#back-button:hover {
+    background-color: rgba(77, 0, 0, 0.3);
+}
+
+#restart-button {
+    min-width: 120px; /* Beispielwert */
+    padding: 10px 20px; /* Beispielwert */
+    font-size: 1.0em; /* Beispielwert */
+
+    position: absolute; /* Absolute Positionierung */
+    bottom: 20px;       /* Abstand zum unteren Rand des Containers */
+    right: 20px;        /* Abstand zum rechten Rand des Containers */
+    margin: 0;          /* Margin entfernen, da absolut positioniert */
+    z-index: 2;         /* Stellt sicher, dass er über anderen Elementen liegt */
+    /* background-color: transparent; */ /* DIESE ZEILE ENTFERNT ODER AUSKOMMENTIERT */
+    /* background-image: url('img/button_1.jpg'); */ /* DIESE ZEILE ENTFERNT ODER AUSKOMMENTIERT */
+}
+
+#restart-button:hover {
+    background-color: rgba(77, 0, 0, 0.3);
+}
+
+/* --- Container für die Options-Buttons --- */
+#options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: auto;
+    position: relative; /* Beibehalten, um Z-Index zu respektieren */
+    z-index: 1;
+    /* Wichtig: Füge Platz am unteren Rand hinzu, damit der Inhalt nicht mit den absolut positionierten Buttons überlappt. */
+    padding-bottom: 70px; /* <--- PASSE DIESEN WERT BEI BEDARF AN! */
+}
+
+
+/* --- Ergebnis-Bereich --- */
+#result-area {
+    margin-top: 40px; 
+    border-top: 2px dashed #6b0000;
+    padding-top: 25px;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    flex-grow: 1; 
+}
+
+#result-text {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-bottom: 25px; 
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.7), 0 0 15px rgba(255, 204, 0, 0.5);
+    text-align: center;
+}
+
+/* --- Responsivität für kleinere Bildschirme --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 20px 20px 20px; 
+        border-width: 2px;
+        min-height: 300px; /* Anpassung für kleinere Bildschirme, falls nötig */
+    }
+    
+    /* Anpassungen für Back- und Restart-Button auf kleinen Bildschirmen */
+    #back-button, #restart-button {
+        bottom: 10px; /* Etwas näher an den Rand rücken */
+        font-size: 0.8em; /* Noch kleinere Schrift */
+        padding: 8px 12px; /* Weniger Padding */
+    }
+    #back-button {
+        left: 10px;
+    }
+    #restart-button {
+        right: 10px;
+    }
+
+    #options-container {
+        padding-bottom: 50px; /* Auch hier weniger Platz bei kleinen Bildschirmen */
+    }
+}
